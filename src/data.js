@@ -71,7 +71,7 @@ export const experience = [
 
 export const projects = [
     {
-        title: "RedRetail",
+        title: "Testing",
         subtitle: "AI-Powered Red Teaming for E-commerce Security",
         tags: ["AI", "Cyber Security", "Python"],
         date: "July 2025",
