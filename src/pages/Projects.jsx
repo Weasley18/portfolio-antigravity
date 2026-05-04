@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion';
 import { projects } from '../data';
 import { Github } from 'lucide-react';
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 
 const Projects = () => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
     return (
         <div className="py-12">
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.5, ease: 'easeOut' }}
                 className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
             >
                 Projects
@@ -17,9 +21,9 @@ const Projects = () => {
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                        animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                        transition={prefersReducedMotion ? undefined : { duration: 0.45, ease: 'easeOut', delay: index * 0.06 }}
                         className="group border border-border p-8 md:p-12 rounded-2xl hover:border-text-secondary/50 bg-bg-secondary/30 hover:bg-bg-secondary/50 transition-all duration-500"
                     >
                         <div className="flex flex-col md:flex-row justify-between md:items-start gap-6 mb-8">

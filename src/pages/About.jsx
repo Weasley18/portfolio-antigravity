@@ -1,11 +1,13 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { education, skills, certifications } from '../data';
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 
-const Section = ({ title, children, delay = 0 }) => (
+const Section = ({ title, children, delay = 0, disableAnimation = false }) => (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay }}
+        initial={disableAnimation ? false : { opacity: 0, y: 20 }}
+        animate={disableAnimation ? false : { opacity: 1, y: 0 }}
+        transition={disableAnimation ? undefined : { duration: 0.5, delay }}
         className="mb-20"
     >
         <h3 className="text-3xl font-display font-bold mb-8 border-b border-border pb-4">{title}</h3>
@@ -14,17 +16,22 @@ const Section = ({ title, children, delay = 0 }) => (
 );
 
 const About = () => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    const sectionDisableAnimation = useMemo(() => prefersReducedMotion, [prefersReducedMotion]);
+
     return (
         <div className="py-12">
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={sectionDisableAnimation ? false : { opacity: 0, y: 20 }}
+                animate={sectionDisableAnimation ? false : { opacity: 1, y: 0 }}
+                transition={sectionDisableAnimation ? undefined : { duration: 0.5, ease: 'easeOut' }}
                 className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
             >
                 About Me
             </motion.h1>
 
-            <Section title="Education" delay={0.1}>
+            <Section title="Education" delay={0.1} disableAnimation={sectionDisableAnimation}>
                 <div className="grid gap-12">
                     {education.map((edu, index) => (
                         <div key={index} className="flex flex-col md:flex-row justify-between md:items-start gap-4 group">
@@ -41,7 +48,7 @@ const About = () => {
                 </div>
             </Section>
 
-            <Section title="Skills" delay={0.2}>
+            <Section title="Skills" delay={0.2} disableAnimation={sectionDisableAnimation}>
                 <div className="grid md:grid-cols-2 gap-12">
                     {Object.entries(skills).map(([category, items]) => (
                         <div key={category}>
@@ -58,7 +65,7 @@ const About = () => {
                 </div>
             </Section>
 
-            <Section title="Certifications & Achievements" delay={0.3}>
+            <Section title="Certifications & Achievements" delay={0.3} disableAnimation={sectionDisableAnimation}>
                 <ul className="space-y-4 text-lg text-text-secondary">
                     {certifications.map((cert, index) => (
                         <li key={index} className="flex items-start gap-3">

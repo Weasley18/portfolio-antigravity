@@ -2,14 +2,17 @@ import { motion } from 'framer-motion';
 import { personalInfo } from '../data';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 
 const Home = () => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
     return (
         <div className="min-h-[80vh] flex flex-col justify-center">
             <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
+                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.7, ease: "easeOut" }}
             >
                 <h1 className="text-7xl md:text-9xl font-display font-bold mb-8 tracking-tighter leading-none">
                     {personalInfo.name}

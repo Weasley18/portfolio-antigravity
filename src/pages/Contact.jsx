@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data';
 import { Mail, Phone, Linkedin, Github, MapPin } from 'lucide-react';
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 
 const ContactItem = ({ icon: Icon, label, value, href }) => (
     <a
@@ -20,20 +21,23 @@ const ContactItem = ({ icon: Icon, label, value, href }) => (
 );
 
 const Contact = () => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
     return (
         <div className="py-12">
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.45, ease: 'easeOut' }}
                 className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
             >
                 Get in Touch
             </motion.h1>
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.45, delay: 0.1 }}
                 className="grid md:grid-cols-2 gap-6"
             >
                 <ContactItem
@@ -63,9 +67,9 @@ const Contact = () => {
             </motion.div>
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.45, delay: 0.2 }}
                 className="mt-16 flex items-center gap-3 text-text-secondary text-lg"
             >
                 <MapPin size={24} />

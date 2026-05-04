@@ -1,12 +1,16 @@
 import { motion } from 'framer-motion';
 import { experience } from '../data';
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 
 const Experience = () => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
     return (
         <div className="py-12">
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.5, ease: 'easeOut' }}
                 className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
             >
                 Experience
@@ -16,9 +20,9 @@ const Experience = () => {
                 {experience.map((exp, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                        animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
+                        transition={prefersReducedMotion ? undefined : { duration: 0.4, ease: 'easeOut', delay: index * 0.04 }}
                         className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16 group"
                     >
                         <div className="md:text-right">

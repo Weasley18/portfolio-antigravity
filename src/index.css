@@ -13,6 +13,10 @@
   --cursor-color: #18181b;
 }
 
+.custom-cursor-enabled {
+  cursor: none;
+}
+
 [data-theme='dark'] {
   /* Dark Mode */
   --bg-primary: #050505;
@@ -27,7 +31,6 @@
 @layer base {
   body {
     @apply bg-bg-primary text-text-primary transition-colors duration-300 font-sans overflow-x-hidden;
-    cursor: none;
   }
 
   h1,
