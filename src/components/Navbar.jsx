@@ -7,6 +7,7 @@ import ThemeToggle from './ThemeToggle';
 const Navbar = () => {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [menuPathname, setMenuPathname] = useState(location.pathname);
 
     const links = [
         { path: '/', label: 'Home' },
@@ -16,9 +17,11 @@ const Navbar = () => {
         { path: '/contact', label: 'Contact' },
     ];
 
-    useEffect(() => {
+    // Close mobile menu when the route changes (React render-time state adjust)
+    if (location.pathname !== menuPathname) {
+        setMenuPathname(location.pathname);
         setMenuOpen(false);
-    }, [location.pathname]);
+    }
 
     useEffect(() => {
         if (!menuOpen) return;
@@ -86,6 +89,7 @@ const Navbar = () => {
                                 <li key={link.path}>
                                     <Link
                                         to={link.path}
+                                        onClick={() => setMenuOpen(false)}
                                         className={`block px-4 py-3 rounded-xl text-sm font-medium uppercase tracking-wider transition-colors ${
                                             location.pathname === link.path
                                                 ? 'bg-accent text-text-primary'
