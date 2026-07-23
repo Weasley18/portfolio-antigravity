@@ -8,9 +8,9 @@ const Section = ({ title, children, delay = 0, disableAnimation = false }) => (
         initial={disableAnimation ? false : { opacity: 0, y: 20 }}
         animate={disableAnimation ? false : { opacity: 1, y: 0 }}
         transition={disableAnimation ? undefined : { duration: 0.5, delay }}
-        className="mb-20"
+        className="mb-12 md:mb-20"
     >
-        <h3 className="text-3xl font-display font-bold mb-8 border-b border-border pb-4">{title}</h3>
+        <h3 className="text-2xl md:text-3xl font-display font-bold mb-8 border-b border-border pb-4">{title}</h3>
         {children}
     </motion.div>
 );
@@ -26,7 +26,7 @@ const About = () => {
                 initial={sectionDisableAnimation ? false : { opacity: 0, y: 20 }}
                 animate={sectionDisableAnimation ? false : { opacity: 1, y: 0 }}
                 transition={sectionDisableAnimation ? undefined : { duration: 0.5, ease: 'easeOut' }}
-                className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
+                className="text-4xl md:text-7xl font-display font-bold mb-10 md:mb-16 tracking-tight"
             >
                 About Me
             </motion.h1>

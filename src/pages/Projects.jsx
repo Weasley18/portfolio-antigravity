@@ -12,7 +12,7 @@ const Projects = () => {
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
                 transition={prefersReducedMotion ? undefined : { duration: 0.5, ease: 'easeOut' }}
-                className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
+                className="text-4xl md:text-7xl font-display font-bold mb-10 md:mb-16 tracking-tight"
             >
                 Projects
             </motion.h1>
@@ -24,11 +24,11 @@ const Projects = () => {
                         initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                         animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
                         transition={prefersReducedMotion ? undefined : { duration: 0.45, ease: 'easeOut', delay: index * 0.06 }}
-                        className="group border border-border p-8 md:p-12 rounded-2xl hover:border-text-secondary/50 bg-bg-secondary/30 hover:bg-bg-secondary/50 transition-all duration-500"
+                        className="group border border-border p-5 md:p-12 rounded-2xl hover:border-text-secondary/50 bg-bg-secondary/30 hover:bg-bg-secondary/50 transition-all duration-500"
                     >
                         <div className="flex flex-col md:flex-row justify-between md:items-start gap-6 mb-8">
                             <div>
-                                <h3 className="text-3xl font-display font-bold mb-2 group-hover:translate-x-2 transition-transform duration-300">{project.title}</h3>
+                                <h3 className="text-2xl md:text-3xl font-display font-bold mb-2 group-hover:translate-x-2 transition-transform duration-300">{project.title}</h3>
                                 <p className="text-xl text-text-secondary">{project.subtitle}</p>
                             </div>
                             <span className="text-sm font-medium px-4 py-2 bg-bg-primary border border-border rounded-full self-start whitespace-nowrap">
@@ -44,7 +44,7 @@ const Projects = () => {
                             ))}
                         </div>
 
-                        <ul className="space-y-3 text-lg text-text-secondary mb-8">
+                        <ul className="space-y-3 text-base md:text-lg text-text-secondary mb-8">
                             {project.description.map((item, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                     <span className="mt-2.5 w-1.5 h-1.5 bg-text-secondary rounded-full flex-shrink-0" />

@@ -8,14 +8,14 @@ const ContactItem = ({ icon: Icon, label, value, href }) => (
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-        className="flex items-center gap-8 p-8 border border-border rounded-2xl hover:bg-bg-secondary/50 hover:border-text-secondary/50 transition-all duration-300 group"
+        className="flex items-center gap-4 md:gap-8 p-5 md:p-8 border border-border rounded-2xl hover:bg-bg-secondary/50 hover:border-text-secondary/50 transition-all duration-300 group min-w-0"
     >
-        <div className="p-5 bg-bg-secondary rounded-full group-hover:bg-text-primary group-hover:text-bg-primary transition-colors duration-300">
-            <Icon size={28} />
+        <div className="p-3 md:p-5 bg-bg-secondary rounded-full group-hover:bg-text-primary group-hover:text-bg-primary transition-colors duration-300 shrink-0">
+            <Icon className="size-[22px] md:size-7" />
         </div>
-        <div>
+        <div className="min-w-0">
             <p className="text-sm text-text-secondary mb-1 uppercase tracking-wider font-medium">{label}</p>
-            <p className="text-xl md:text-2xl font-bold group-hover:translate-x-1 transition-transform duration-300">{value}</p>
+            <p className="text-lg md:text-2xl font-bold break-all group-hover:translate-x-1 transition-transform duration-300">{value}</p>
         </div>
     </a>
 );
@@ -29,7 +29,7 @@ const Contact = () => {
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
                 transition={prefersReducedMotion ? undefined : { duration: 0.45, ease: 'easeOut' }}
-                className="text-5xl md:text-7xl font-display font-bold mb-16 tracking-tight"
+                className="text-4xl md:text-7xl font-display font-bold mb-10 md:mb-16 tracking-tight"
             >
                 Get in Touch
             </motion.h1>
