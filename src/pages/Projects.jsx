@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { projects } from '../data';
-import { Github } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 
 const Projects = () => {
@@ -52,6 +52,33 @@ const Projects = () => {
                                 </li>
                             ))}
                         </ul>
+
+                        {(project.videoPdfLink || project.githubRepoLink) && (
+                            <div className="flex flex-wrap gap-3">
+                                {project.videoPdfLink && (
+                                    <a
+                                        href={project.videoPdfLink}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-bg-primary/70 text-sm font-medium text-text-primary hover:border-text-secondary/60 hover:bg-bg-primary transition-colors"
+                                    >
+                                        <ExternalLink size={16} />
+                                        Video / PDF
+                                    </a>
+                                )}
+                                {project.githubRepoLink && (
+                                    <a
+                                        href={project.githubRepoLink}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-bg-primary/70 text-sm font-medium text-text-primary hover:border-text-secondary/60 hover:bg-bg-primary transition-colors"
+                                    >
+                                        <Github size={16} />
+                                        GitHub Repo
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </motion.div>
                 ))}
             </div>
