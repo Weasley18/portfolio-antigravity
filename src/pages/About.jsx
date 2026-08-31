@@ -52,7 +52,7 @@ const About = () => {
                 <div className="grid md:grid-cols-2 gap-12">
                     {Object.entries(skills).map(([category, items]) => (
                         <div key={category}>
-                            <h4 className="text-xl font-semibold capitalize mb-6 text-text-secondary">{category}</h4>
+                            <h4 className="text-xl font-semibold mb-6 text-text-secondary">{category}</h4>
                             <div className="flex flex-wrap gap-3">
                                 {items.map((skill) => (
                                     <span key={skill} className="px-4 py-2 bg-accent/50 border border-border rounded-lg text-sm font-medium hover:bg-accent hover:scale-105 transition-all duration-300 cursor-default">
