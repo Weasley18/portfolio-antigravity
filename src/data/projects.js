@@ -1,81 +1,12 @@
-export const personalInfo = {
-    name: "Harsh Ringsia",
-    role: "Computer Science Student & Developer",
-    tagline: "I build systems that turn ambitious ideas into production-ready software — from secure, scalable APIs to AI pipelines that actually ship. As an SDE Intern at Firedesk, I've engineered 10+ backend services with JWT auth and RBAC, optimized PostgreSQL schemas to cut query latency by 40%, and built reusable React interfaces that halved feature build time. On the AI side, I've architected RAG pipelines with fine-tuned LLMs, deployed ML models for financial risk scoring, and shipped multilingual mobile apps used across real-world hackathons. I care about clean architecture, measurable impact, and building things people actually use.",
-    email: "harshringsia18@gmail.com",
-    phone: "+91-7439746027",
-    linkedin: "https://linkedin.com/in/harshringsia",
-    github: "https://github.com/Weasley18",
-    location: "Bengaluru, India",
-    image:  "/profilepic.jpg"
-};
-
-export const education = [
-    {
-        degree: "B.E. in Computer Science-Cyber Security",
-        institution: "R.N. Shetty Institute of Technology",
-        location: "Bengaluru",
-        year: "2023 – 2027"
-    },
-    {
-        degree: "Council for the Indian School Certificate Examinations (1-12)",
-        institution: "Don Bosco School",
-        location: "Bandel, India",
-        year: "2010 – 2022"
-    }
-];
-
-export const experience = [
-    {
-        role: "SDE Intern",
-        company: "Firedesk (Leistung Technologies)",
-        location: "On-Campus",
-        duration: "September 2025 - June 2026",
-        description: [
-            "Engineered 10+ backend REST APIs in Node.js and Express.js, implementing JWT-based authentication and Role-Based Access Control (RBAC) across multiple user roles to secure request handling in production.",
-
-            "Built responsive React interfaces for 5+ application modules, standardizing a reusable component library that cut new-feature build time by 50% and unified UI/UX across the platform.",
-            
-            "Architected and optimized PostgreSQL relational schemas for 10+ modules, adding indexing strategies and ORM-based migrations that reduced average query latency by 40% and enforced data integrity."
-        ]
-    },
-    {
-        role: "Student Researcher",
-        company: "Undergraduate Research Forum, RNSIT",
-        location: "On-Campus",
-        duration: "October 2025 - January 2026",
-        description: [
-            "Collected and preprocessed EEG/biometric data using NeuroSky, MNE-Python, and SciPy, reducing signal noise by ~30%.",
-            "Optimized Random Forest/SVM pipelines, achieving 80–85% migraine classification accuracy.",
-            "Building a mobile alert system for early migraine intervention, planning field trials with NGOs."
-        ]
-    },
-    {
-        role: "Web Development Freelancing",
-        company: "Self (evolvexcse.in, enngee.in)",
-        location: "Remote",
-        duration: "Part-time",
-        description: [
-            "Designed and shipped 2 responsive client websites end-to-end using HTML, CSS, JavaScript, and Git-based version control.",
-            "Acted as sole developer and point of contact, coordinating directly with stakeholders to deliver on time and maintaining post-launch support for live production sites."
-        ]
-    },
-    {
-        role: "Summer Research Intern",
-        company: "Indian Institute of Technology Roorkee",
-        location: "Remote",
-        duration: "May 2024 - June 2024",
-        description: [
-            "Researched and implemented Python scripts of graph-theory to segment urban maps into 120+ distinct neighborhood clusters.",
-            "Achieved 25–30% higher clustering accuracy using a graph-based method over K-means and DBSCAN for neighborhood delineation."
-        ]
-    }
-];
-
+// The grid source of truth. Flagship projects (isFlagship: true) get a real
+// `slug` and a matching entry in caseStudies.js for the full /work/:slug page.
 export const projects = [
     {
-        title: "AI Courtroom Mystery",
-        subtitle: "Real-Time Multiplayer Deduction Game",
+        slug: "the-docket",
+        isFlagship: true,
+        title: "The Docket",
+        subtitle: "AI Courtroom Mystery — Real-Time Multiplayer Deduction Game",
+        summary: "A real-time multiplayer courtroom where two LLM agents argue a case to verdict.",
         tags: ["AI", "Full-Stack"],
         date: "August 2026",
         videoPdfLink: null,
@@ -88,8 +19,11 @@ export const projects = [
         ]
     },
     {
-        title: "Finsaathi",
+        slug: "finsaathi",
+        isFlagship: true,
+        title: "FinSaathi",
         subtitle: "AI-Powered Financial Empowerment Platform",
+        summary: "A fintech backend with an AI advisor clone, grounded chat, and anomaly detection.",
         tags: ["AI", "FinTech"],
         date: "Feb 2026",
         videoPdfLink: "",
@@ -102,8 +36,11 @@ export const projects = [
         ]
     },
     {
-        title: "Dhenu",
+        slug: "dhenu",
+        isFlagship: true,
+        title: "DHENU",
         subtitle: "AI-Powered App for Indigenous Cow Conservation",
+        summary: "A serverless, multilingual mobile app built for the Google Solution Challenge.",
         tags: ["AI", "AgriTech"],
         date: "Google Solution Challenge 2025",
         videoPdfLink: "https://youtu.be/FxbRTp-LyAU?si=JGy41QeqM1Tns2mY",
@@ -115,8 +52,11 @@ export const projects = [
         ]
     },
     {
+        slug: "redretail",
+        isFlagship: true,
         title: "RedRetail",
         subtitle: "AI-Powered Red Teaming for E-commerce Security",
+        summary: "A modular scanner that automates vulnerability discovery across e-commerce sites.",
         tags: ["AI", "Cyber Security", "Python"],
         date: "July 2025",
         videoPdfLink: "https://youtu.be/R30wI0NyVvI?feature=shared",
@@ -128,21 +68,27 @@ export const projects = [
         ]
     },
     {
+        slug: null,
+        isFlagship: false,
         title: "Auror",
-        subtitle: "Moody’s Magical Cybersecurity Classroom",
+        subtitle: "Moody's Magical Cybersecurity Classroom",
+        summary: "A Harry Potter–themed Gemini chatbot that teaches cybersecurity concepts.",
         tags: ["Chatbot", "Cyber Security", "Gemini API"],
         date: "May 2025",
         videoPdfLink: null,
         githubRepoLink: "https://github.com/Weasley18/CY-Advisor",
         description: [
             "Created a character-driven Gemini API chatbot with a Harry Potter theme to teach cybersecurity concepts.",
-            "Authored context-aware prompts to shape the chatbot’s tone, achieving 90% positive user feedback.",
+            "Authored context-aware prompts to shape the chatbot's tone, achieving 90% positive user feedback.",
             "Designed and developed a minimalist front-end to reduce cognitive load."
         ]
     },
     {
+        slug: null,
+        isFlagship: false,
         title: "Dhata",
         subtitle: "Your AI-Powered Companion for Karnataka",
+        summary: "A 30-hour-hackathon citizen assistance app with offline-first SOS.",
         tags: ["AI", "Mobile Application", "React Native"],
         date: "April 2025",
         videoPdfLink: "https://drive.google.com/file/d/1oD0C3aCY0eZ0Y3Uk5M4Ppl537LF_LcQO/view?usp=sharing",
@@ -153,10 +99,12 @@ export const projects = [
             "Integrated an offline-first SOS feature and enabled content accessibility in 3 languages."
         ]
     },
-    
     {
+        slug: null,
+        isFlagship: false,
         title: "SkyWay Flight Booking System",
         subtitle: "Full Stack Application",
+        summary: "A React/Flask/MySQL booking system with role-based admin controls.",
         tags: ["React", "Flask", "MySQL"],
         date: "July 2024",
         videoPdfLink: null,
@@ -168,8 +116,11 @@ export const projects = [
         ]
     },
     {
+        slug: null,
+        isFlagship: false,
         title: "Stock Price Prediction",
         subtitle: "Machine Learning, Finance",
+        summary: "An LSTM network trained on 5 years of market data for trend forecasting.",
         tags: ["Machine Learning", "Keras", "TensorFlow"],
         date: "May 2024",
         videoPdfLink: null,
@@ -180,22 +131,4 @@ export const projects = [
             "Performed data pre-processing and feature engineering."
         ]
     }
-];
-
-export const skills = {
-  "Languages": ["Python", "TypeScript/JavaScript", "Java", "C", "SQL"],
-  "AI/ML & LLM Engineering": ["LangChain", "LangGraph", "RAG", "Vertex AI/Gemini", "OpenAI API", "Ollama", "ChromaDB", "MCP"],
-  "Backend & APIs": ["Node.js", "Express.js", "Fastify", "Flask", "FastAPI", "RESTful APIs", "WebSockets", "SQLAlchemy", "Prisma"],
-  "Databases & Messaging": ["PostgreSQL", "MySQL", "MongoDB", "SQLite", "Firebase (Firestore)", "Redis"],
-  "Tools & Concepts": ["Git/GitHub", "Linux", "Data Structures & Algorithms", "React", "React Native"]
-};
-
-export const certifications = [
-    "Winner, Codeflix 6.0 (1st place out of 200 participants)-Competitive Coding Compedition",
-    "Winner, Schema Showdown (1st place out of 70 participants)-SQL Query Writing Competition",
-    "Machine Learning Specialization",
-    "Google Cybersecurity Specialization",
-    "Introduction to Back-End Development by META",
-    "Participated in 10+ hackathons",
-    "Leetcode: Contest rating of 1768"
 ];

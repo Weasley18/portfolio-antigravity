@@ -1,80 +1,100 @@
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { education, skills, certifications } from '../data';
+import { Award } from 'lucide-react';
+import { education, experience, skills, certifications } from '../data';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
+import { revealOnView } from '../lib/motion';
+import SectionHeading from '../components/ui/SectionHeading';
+import AnnotationText from '../components/ui/AnnotationText';
+import StickerTag from '../components/ui/StickerTag';
+import Timeline from '../components/ui/Timeline';
+import ResumeButton from '../components/ui/ResumeButton';
 
-const Section = ({ title, children, delay = 0, disableAnimation = false }) => (
-    <motion.div
-        initial={disableAnimation ? false : { opacity: 0, y: 20 }}
-        animate={disableAnimation ? false : { opacity: 1, y: 0 }}
-        transition={disableAnimation ? undefined : { duration: 0.5, delay }}
-        className="mb-12 md:mb-20"
-    >
-        <h3 className="text-2xl md:text-3xl font-display font-bold mb-8 border-b border-border pb-4">{title}</h3>
-        {children}
-    </motion.div>
-);
+const skillTones = ['warm', 'cool'];
 
 const About = () => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    const sectionDisableAnimation = useMemo(() => prefersReducedMotion, [prefersReducedMotion]);
-
     return (
-        <div className="py-12">
-            <motion.h1
-                initial={sectionDisableAnimation ? false : { opacity: 0, y: 20 }}
-                animate={sectionDisableAnimation ? false : { opacity: 1, y: 0 }}
-                transition={sectionDisableAnimation ? undefined : { duration: 0.5, ease: 'easeOut' }}
-                className="text-4xl md:text-7xl font-display font-bold mb-10 md:mb-16 tracking-tight"
-            >
-                About Me
-            </motion.h1>
+        <div className="py-8 md:py-12">
+            <motion.div {...revealOnView(prefersReducedMotion)} className="mb-16 md:mb-24 max-w-3xl">
+                <p className="font-mono text-xs uppercase tracking-widest text-accent-warm mb-4">Notebook — Page 01</p>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-semibold tracking-tight mb-6">About Me</h1>
+                <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-4">
+                    I'm a pre-final-year Computer Science (Cyber Security) student, mostly interested in backend systems and
+                    AI tools that hold up outside of a demo. During my internship at Firedesk, I worked on backend services
+                    with JWT auth and role-based access control, helped optimize PostgreSQL schemas that cut query latency
+                    by around 40%, and built reusable React components that made new features a bit quicker to ship.
+                </p>
+                <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-6">
+                    Outside of that, I like experimenting — RAG pipelines, ML models for financial risk scoring, multilingual
+                    mobile apps at hackathons. <AnnotationText className="text-lg md:text-xl">I'm still learning, but I try to build things that are actually useful.</AnnotationText>
+                </p>
+            </motion.div>
 
-            <Section title="Education" delay={0.1} disableAnimation={sectionDisableAnimation}>
-                <div className="grid gap-12">
+            <section className="mb-20 md:mb-28">
+                <SectionHeading index="02" title="Journey" />
+                <Timeline items={experience} />
+            </section>
+
+            <section className="mb-20 md:mb-28">
+                <SectionHeading index="03" title="Education" />
+                <div className="grid gap-8">
                     {education.map((edu, index) => (
-                        <div key={index} className="flex flex-col md:flex-row justify-between md:items-start gap-4 group">
+                        <motion.div
+                            key={index}
+                            {...revealOnView(prefersReducedMotion, { delay: index * 0.06 })}
+                            className="flex flex-col md:flex-row justify-between md:items-start gap-2 border-b border-border pb-6"
+                        >
                             <div>
-                                <h4 className="text-2xl font-semibold mb-1 group-hover:text-text-secondary transition-colors">{edu.institution}</h4>
-                                <p className="text-lg text-text-secondary">{edu.degree}</p>
+                                <h4 className="text-xl md:text-2xl font-display font-semibold mb-1">{edu.institution}</h4>
+                                <p className="text-text-secondary">{edu.degree}</p>
                             </div>
-                            <div className="text-left md:text-right">
-                                <p className="font-medium text-lg">{edu.year}</p>
-                                <p className="text-base text-text-secondary">{edu.location}</p>
+                            <div className="text-left md:text-right shrink-0">
+                                <p className="font-mono text-sm font-medium">{edu.year}</p>
+                                <p className="text-sm text-text-secondary">{edu.location}</p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-            </Section>
+            </section>
 
-            <Section title="Skills" delay={0.2} disableAnimation={sectionDisableAnimation}>
-                <div className="grid md:grid-cols-2 gap-12">
-                    {Object.entries(skills).map(([category, items]) => (
-                        <div key={category}>
-                            <h4 className="text-xl font-semibold mb-6 text-text-secondary">{category}</h4>
-                            <div className="flex flex-wrap gap-3">
+            <section className="mb-20 md:mb-28">
+                <SectionHeading index="04" title="Skills" />
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                    {Object.entries(skills).map(([category, items], catIndex) => (
+                        <motion.div key={category} {...revealOnView(prefersReducedMotion, { delay: catIndex * 0.05 })}>
+                            <h4 className="text-sm uppercase tracking-wider text-text-secondary mb-4">{category}</h4>
+                            <div className="flex flex-wrap gap-2.5">
                                 {items.map((skill) => (
-                                    <span key={skill} className="px-4 py-2 bg-accent/50 border border-border rounded-lg text-sm font-medium hover:bg-accent hover:scale-105 transition-all duration-300 cursor-default">
+                                    <StickerTag key={skill} tone={skillTones[catIndex % 2]}>
                                         {skill}
-                                    </span>
+                                    </StickerTag>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-            </Section>
+            </section>
 
-            <Section title="Certifications & Achievements" delay={0.3} disableAnimation={sectionDisableAnimation}>
-                <ul className="space-y-4 text-lg text-text-secondary">
+            <section className="mb-16 md:mb-20">
+                <SectionHeading index="05" title="Certifications & Achievements" />
+                <div className="grid sm:grid-cols-2 gap-4">
                     {certifications.map((cert, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                            <span className="mt-2 w-1.5 h-1.5 bg-text-primary rounded-full flex-shrink-0" />
-                            {cert}
-                        </li>
+                        <motion.div
+                            key={index}
+                            {...revealOnView(prefersReducedMotion, { delay: index * 0.04 })}
+                            className="flex items-start gap-3 p-4 rounded-lg border border-border bg-bg-elevated shadow-paper"
+                        >
+                            <Award size={18} className="text-accent-warm shrink-0 mt-0.5" />
+                            <p className="text-sm text-text-secondary leading-relaxed">{cert}</p>
+                        </motion.div>
                     ))}
-                </ul>
-            </Section>
+                </div>
+            </section>
+
+            <div className="text-center pt-4">
+                <ResumeButton variant="solid" />
+            </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import ResumeButton from '../ui/ResumeButton';
 
 const Navbar = () => {
     const location = useLocation();
@@ -11,9 +12,8 @@ const Navbar = () => {
 
     const links = [
         { path: '/', label: 'Home' },
+        { path: '/work', label: 'Work' },
         { path: '/about', label: 'About' },
-        { path: '/experience', label: 'Experience' },
-        { path: '/projects', label: 'Projects' },
         { path: '/contact', label: 'Contact' },
     ];
 
@@ -39,33 +39,37 @@ const Navbar = () => {
         };
     }, [menuOpen]);
 
+    const isActive = (path) => (path === '/' ? location.pathname === '/' : location.pathname.startsWith(path));
+
     return (
         <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-40">
-            <nav className="p-3 md:p-4 flex justify-between items-center bg-bg-primary/70 backdrop-blur-md border border-white/10 rounded-full shadow-sm">
-                <Link to="/" className="text-xl font-display font-bold tracking-tighter px-2 md:px-4">
-                    HR.
+            <nav className="p-3 md:p-4 flex justify-between items-center bg-bg-primary/80 backdrop-blur-md border border-border rounded-full shadow-paper">
+                <Link to="/" className="flex flex-col leading-none px-2 md:px-4">
+                    <span className="text-xl font-display font-bold tracking-tighter">HR.</span>
+                    <span className="hidden sm:block font-handwritten text-accent-warm text-sm -mt-0.5">code &amp; coffee</span>
                 </Link>
 
-                <div className="flex items-center gap-2 md:gap-8 px-1 md:px-4">
-                    <ul className="hidden md:flex gap-8">
+                <div className="flex items-center gap-2 md:gap-6 px-1 md:px-4">
+                    <ul className="hidden md:flex gap-7">
                         {links.map((link) => (
                             <li key={link.path}>
-                                <Link to={link.path} className="relative text-sm font-medium uppercase tracking-wider hover:text-text-secondary transition-colors">
+                                <Link to={link.path} className="relative text-sm font-medium uppercase tracking-wider hover:text-accent-warm transition-colors">
                                     {link.label}
-                                    {location.pathname === link.path && (
+                                    {isActive(link.path) && (
                                         <motion.div
                                             layoutId="underline"
-                                            className="absolute left-0 right-0 -bottom-1 h-[1px] bg-text-primary"
+                                            className="absolute left-0 right-0 -bottom-1 h-[2px] bg-accent-warm rounded-full"
                                         />
                                     )}
                                 </Link>
                             </li>
                         ))}
                     </ul>
+                    <ResumeButton variant="outline" className="hidden md:inline-flex !py-1.5 !px-4 !text-xs" />
                     <ThemeToggle />
                     <button
                         type="button"
-                        className="md:hidden p-2 rounded-full hover:bg-accent transition-colors"
+                        className="md:hidden p-2 rounded-full hover:bg-accent-warmSoft transition-colors"
                         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                         aria-expanded={menuOpen}
                         onClick={() => setMenuOpen((open) => !open)}
@@ -82,7 +86,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.2 }}
-                        className="md:hidden mt-2 p-4 bg-bg-primary/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg"
+                        className="md:hidden mt-2 p-4 bg-bg-primary/95 backdrop-blur-md border border-border rounded-2xl shadow-paper"
                     >
                         <ul className="flex flex-col gap-1">
                             {links.map((link) => (
@@ -91,15 +95,18 @@ const Navbar = () => {
                                         to={link.path}
                                         onClick={() => setMenuOpen(false)}
                                         className={`block px-4 py-3 rounded-xl text-sm font-medium uppercase tracking-wider transition-colors ${
-                                            location.pathname === link.path
-                                                ? 'bg-accent text-text-primary'
-                                                : 'text-text-secondary hover:bg-accent/50 hover:text-text-primary'
+                                            isActive(link.path)
+                                                ? 'bg-accent-warmSoft text-accent-warm'
+                                                : 'text-text-secondary hover:bg-bg-secondary hover:text-text-primary'
                                         }`}
                                     >
                                         {link.label}
                                     </Link>
                                 </li>
                             ))}
+                            <li className="pt-2">
+                                <ResumeButton variant="solid" className="w-full justify-center" />
+                            </li>
                         </ul>
                     </motion.div>
                 )}

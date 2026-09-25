@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 const ThemeToggle = () => {
     const [theme, setTheme] = useState(() => {
         if (typeof window !== 'undefined') {
-            return localStorage.getItem('theme') || 'light';
+            return localStorage.getItem('theme') || 'dark';
         }
-        return 'light';
+        return 'dark';
     });
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const ThemeToggle = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-accent transition-colors relative overflow-hidden"
+            className="p-2 rounded-full hover:bg-accent-warmSoft hover:text-accent-warm transition-colors relative overflow-hidden"
             aria-label="Toggle Theme"
         >
             <motion.div
@@ -31,7 +31,7 @@ const ThemeToggle = () => {
                 animate={{ rotate: theme === 'light' ? 0 : 180 }}
                 transition={{ duration: 0.3 }}
             >
-                {theme === 'light' ? <Sun size={24} /> : <Moon size={24} />}
+                {theme === 'light' ? <Sun size={22} /> : <Moon size={22} />}
             </motion.div>
         </button>
     );
