@@ -6,6 +6,8 @@ import About from './pages/About';
 import Work from './pages/Work';
 import CaseStudy from './pages/CaseStudy';
 import Contact from './pages/Contact';
+import Experience from './pages/Experience';
+import Skills from './pages/Skills';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -17,10 +19,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="work" element={<Work />} />
           <Route path="work/:slug" element={<CaseStudy />} />
+          <Route path="experience" element={<Experience />} />
+          <Route path="skills" element={<Skills />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="projects" element={<Navigate to="/work" replace />} />
-          <Route path="experience" element={<Navigate to="/about" replace />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

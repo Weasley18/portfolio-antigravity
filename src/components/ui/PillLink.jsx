@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const VARIANT_CLASSES = {
-    solid: "bg-accent-warm text-bg-elevated border-accent-warm hover:bg-accent-warm/90",
+    solid: "bg-garnet text-white border-transparent hover:brightness-110",
     outline: "bg-transparent text-ink border-border hover:border-accent-warm hover:text-accent-warm",
 };
 

@@ -1,14 +1,14 @@
 export const education = [
     {
-        degree: "B.E. in Computer Science-Cyber Security",
+        degree: "B.E. in Computer Science & Engineering (Cyber Security)",
         institution: "R.N. Shetty Institute of Technology",
         location: "Bengaluru",
         year: "2023 – 2027"
     },
     {
-        degree: "Council for the Indian School Certificate Examinations (1-12)",
+        degree: "Class XII & Class X, CISCE",
         institution: "Don Bosco School",
         location: "Bandel, India",
-        year: "2010 – 2022"
+        year: "2020 – 2022"
     }
 ];

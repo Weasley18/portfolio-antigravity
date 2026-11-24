@@ -5,17 +5,19 @@ import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 import { revealOnView } from '../lib/motion';
 import NotebookCard from '../components/ui/NotebookCard';
 import ResumeButton from '../components/ui/ResumeButton';
+import Tilt3D from '../components/ui/Tilt3D';
+import Football from '../components/three/Football';
 
-const ContactItem = ({ icon: Icon, label, value, href, rotate }) => (
+const ContactItem = ({ icon: Icon, label, value, href }) => (
+    <Tilt3D max={6} glare={false}>
     <NotebookCard
         as="a"
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-        rotate={rotate}
         className="flex items-center gap-4 md:gap-6 p-5 md:p-7 group min-w-0"
     >
-        <div className="p-3 md:p-4 bg-accent-warmSoft text-accent-warm rounded-full group-hover:bg-accent-warm group-hover:text-bg-elevated transition-colors duration-300 shrink-0">
+        <div className="p-3 md:p-4 bg-accent-warmSoft text-accent-warm rounded-full group-hover:bg-garnet group-hover:text-white transition-colors duration-300 shrink-0">
             <Icon className="size-5 md:size-6" />
         </div>
         <div className="min-w-0">
@@ -23,6 +25,7 @@ const ContactItem = ({ icon: Icon, label, value, href, rotate }) => (
             <p className="text-base md:text-xl font-semibold break-all group-hover:text-accent-warm transition-colors duration-300">{value}</p>
         </div>
     </NotebookCard>
+    </Tilt3D>
 );
 
 const Contact = () => {
@@ -30,19 +33,25 @@ const Contact = () => {
 
     return (
         <div className="py-8 md:py-12">
-            <motion.div {...revealOnView(prefersReducedMotion)} className="mb-12 md:mb-16 max-w-2xl">
-                <p className="font-handwritten text-2xl text-accent-warm mb-2 -rotate-2 inline-block">say hi</p>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-semibold tracking-tight mb-4">Get in Touch</h1>
+            <div className="mb-12 md:mb-16 grid md:grid-cols-[1fr_auto] items-center gap-8">
+            <motion.div {...revealOnView(prefersReducedMotion)} className="max-w-2xl">
+                <p className="font-mono text-xs uppercase tracking-widest text-accent-warm mb-4">Kick-off</p>
+                <h1 className="text-6xl sm:text-7xl md:text-8xl font-display font-extrabold uppercase tracking-tight leading-none mb-5">Get in touch</h1>
                 <p className="text-lg text-text-secondary font-light">
-                    Got a project, a hard problem, or just want to talk shop? My inbox is open.
+                    Hiring, building something, or just want to talk football and backend systems? My inbox is open.
                 </p>
             </motion.div>
+                <div className="relative mx-auto md:mx-0">
+                    <Football className="w-60 h-60 md:w-72 md:h-72" />
+                    <p className="text-center font-mono text-[10px] uppercase tracking-widest text-text-secondary -mt-2">Drag to spin · click to kick</p>
+                </div>
+            </div>
 
             <motion.div {...revealOnView(prefersReducedMotion, { delay: 0.05 })} className="grid md:grid-cols-2 gap-6 mb-10">
-                <ContactItem icon={Mail} label="Email" value={personalInfo.email} href={`mailto:${personalInfo.email}`} rotate={-1} />
-                <ContactItem icon={Phone} label="Phone" value={personalInfo.phone} href={`tel:${personalInfo.phone}`} rotate={1} />
-                <ContactItem icon={Linkedin} label="LinkedIn" value="linkedin.com/in/harshringsia" href={personalInfo.linkedin} rotate={1} />
-                <ContactItem icon={Github} label="GitHub" value="github.com/Weasley18" href={personalInfo.github} rotate={-1} />
+                <ContactItem icon={Mail} label="Email" value={personalInfo.email} href={`mailto:${personalInfo.email}`} />
+                <ContactItem icon={Phone} label="Phone" value={personalInfo.phone} href={`tel:${personalInfo.phone}`} />
+                <ContactItem icon={Linkedin} label="LinkedIn" value="linkedin.com/in/harshringsia" href={personalInfo.linkedin} />
+                <ContactItem icon={Github} label="GitHub" value="github.com/Weasley18" href={personalInfo.github} />
             </motion.div>
 
             <motion.div

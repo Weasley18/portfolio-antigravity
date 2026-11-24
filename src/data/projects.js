@@ -1,21 +1,57 @@
-// The grid source of truth. Flagship projects (isFlagship: true) get a real
-// `slug` and a matching entry in caseStudies.js for the full /work/:slug page.
+// The grid source of truth. Flagship projects (isFlagship: true) are the
+// "Starting XI" on Home/Work. Any project with a `slug` also has a matching
+// entry in caseStudies.js for the full /work/:slug page.
 export const projects = [
+    {
+        slug: "hirelens",
+        isFlagship: true,
+        title: "HireLens",
+        subtitle: "LLM Candidate Assessment Platform",
+        summary: "An LLM résumé assessor that grounds every gap and interview question in cited evidence.",
+        tags: ["AI/ML", "Backend"],
+        date: "Sep – Nov 2026",
+        videoPdfLink: "https://drive.google.com/file/d/19YL6FHMIappDOB2GMEY3tggJzdEmKPDa/view?usp=sharing",
+        githubRepoLink: "https://github.com/Weasley18/hirelens",
+        liveLink: "https://thehirelens.netlify.app",
+        description: [
+            "Built an LLM resume assessor to replace keyword-skim hiring screens, grounding each gap and interview question in cited evidence.",
+            "Architected microservices behind a reverse proxy: a Fastify API, BullMQ asynchronous job queues and a FastAPI RAG service.",
+            "Made jobs fault-tolerant with timeouts, retries and idempotent pgvector ingestion, validated against a single shared JSON Schema.",
+            "Passed 21/24 eval cases over 120 runs, resisted every prompt-injection test, and shipped with 117 unit and integration tests in CI."
+        ]
+    },
     {
         slug: "the-docket",
         isFlagship: true,
         title: "The Docket",
-        subtitle: "AI Courtroom Mystery — Real-Time Multiplayer Deduction Game",
-        summary: "A real-time multiplayer courtroom where two LLM agents argue a case to verdict.",
+        subtitle: "AI Courtroom Mystery",
+        summary: "A multiplayer courtroom where two LLM counsel agents argue cases before human jurors.",
         tags: ["AI", "Full-Stack"],
         date: "August 2026",
-        videoPdfLink: null,
-        githubRepoLink: "",
+        videoPdfLink: "https://drive.google.com/file/d/1CrcKWG2cJQpeAjIfLrR4RHSO-IVoCp_P/view?usp=sharing",
+        githubRepoLink: "https://github.com/Weasley18/mystery-game",
+        liveLink: "https://docket.harshringsia.me/",
         description: [
-            "Architected a real-time multiplayer game engine in FastAPI with WebSockets, orchestrating a multi-phase debate-to-verdict loop across concurrent lobbies; containerized and deployed to Railway.",
-            "Designed a dual-agent AI courtroom in LangGraph, routing prosecution/defense arguments through independently-tuned LLM calls via dedicated debate, Q&A, and voting nodes, backed by SQLite state checkpointing.",
-            "Built a Redis-backed state layer (TTL expiry, per-player rate limiting) with pub/sub WebSocket fan-out, enabling horizontal scaling across backend workers while preserving real-time consistency.",
-            "Hardened LLM endpoints against prompt injection with a serialization layer masking sensitive game state pre-verdict; benchmarked via custom load tests, now extending with TTS/STT."
+            "Made a multiplayer courtroom game where two LLM counsel agents, orchestrated in LangGraph, argue cases before human jurors.",
+            "Horizontally scaled FastAPI WebSockets via event-driven Redis pub/sub, adding TTL lobbies, rate limits and a thread-safe store.",
+            "Load-tested concurrent lobbies with an asyncio client and 30 pytest cases incl. WebSocket end-to-end, then deployed on Railway."
+        ]
+    },
+    {
+        slug: "secpipe",
+        isFlagship: true,
+        title: "SecPipe",
+        subtitle: "Automated DevSecOps CI/CD Security Gate",
+        summary: "Eighteen security scanners merged into one CI gate that blocks a bad PR in under two minutes.",
+        tags: ["Security", "Backend"],
+        date: "September 2026",
+        videoPdfLink: "https://drive.google.com/file/d/1baAZuI9mX4MzyX2s98NGNXes0ZJLz-jo/view?usp=sharing",
+        githubRepoLink: "https://github.com/Weasley18/SecPipe",
+        liveLink: null,
+        description: [
+            "Unified 18 siloed SAST/SCA/IaC/DAST scanners into one DevSecOps CI/CD gate for a FastAPI app (JWT, Argon2, TOTP 2FA).",
+            "Wrote a Python aggregator that dedupes via union-find, caches EPSS/CISA KEV data, and gates Cosign and SBOM attestation.",
+            "Cut 11,223 raw findings to 7,516 (-33%), caught 13/14 planted OWASP Top 10 flaws like SSRF, and blocked the PR in <2 min."
         ]
     },
     {
@@ -36,8 +72,24 @@ export const projects = [
         ]
     },
     {
+        slug: "para-football",
+        isFlagship: false,
+        title: "Para Football",
+        subtitle: "Kolkata Street Football",
+        summary: "A 3D street football game in the browser, with 120 Hz physics and zero asset files.",
+        tags: ["Game Dev", "Game AI"],
+        date: "November 2026",
+        videoPdfLink: "https://drive.google.com/file/d/1-BquyWNJTeTR7irPc5sttwLCLjGqX9cy/view?usp=sharing",
+        githubRepoLink: "https://github.com/Weasley18/kolkata-street-football",
+        liveLink: "https://kolkata-street-football.netlify.app/",
+        description: [
+            "Built a 3D street football game to hit Kolkata para nostalgia, coding 120 Hz physics and role-based CPU AI with 3 difficulty tiers.",
+            "Took it from concept to production in just 5 hours as a single web page with zero asset files."
+        ]
+    },
+    {
         slug: "dhenu",
-        isFlagship: true,
+        isFlagship: false,
         title: "DHENU",
         subtitle: "AI-Powered App for Indigenous Cow Conservation",
         summary: "A serverless, multilingual mobile app built for the Google Solution Challenge.",
@@ -53,7 +105,7 @@ export const projects = [
     },
     {
         slug: "redretail",
-        isFlagship: true,
+        isFlagship: false,
         title: "RedRetail",
         subtitle: "AI-Powered Red Teaming for E-commerce Security",
         summary: "A modular scanner that automates vulnerability discovery across e-commerce sites.",

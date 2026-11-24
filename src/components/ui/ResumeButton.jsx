@@ -2,8 +2,8 @@ import { FileDown } from "lucide-react";
 import { personalInfo } from "../../data";
 
 const VARIANT_CLASSES = {
-    outline: "border-accent-warm text-accent-warm hover:bg-accent-warmSoft",
-    solid: "border-accent-warm bg-accent-warm text-bg-elevated hover:bg-accent-warm/90",
+    outline: "border-border text-ink hover:border-accent-warm hover:text-accent-warm",
+    solid: "border-transparent bg-garnet text-white hover:brightness-110",
 };
 
 const ResumeButton = ({ variant = "outline", className = "" }) => (

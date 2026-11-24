@@ -1,20 +1,18 @@
-import { rotationFor } from "../../lib/hash";
+import AnimatedValue from "../ui/AnimatedValue";
+import Tilt3D from "../ui/Tilt3D";
 
 /**
- * A torn-sticky-note stat callout, used in a case study's Results section.
+ * A stat tile: tilts in 3D, and the number rolls up when it scrolls into
+ * view. `compact` is the smaller version used in a case study's overview.
  */
-const MetricSticker = ({ value, label, index = 0 }) => {
-    const rotate = rotationFor(`${value}-${label}-${index}`);
-
-    return (
-        <div
-            style={{ transform: `rotate(${rotate}deg)` }}
-            className="relative torn-edge bg-accent-warmSoft border border-accent-warm/30 rounded-lg shadow-sticker px-5 py-6 md:px-6 md:py-8"
-        >
-            <p className="font-display text-2xl md:text-3xl font-semibold text-accent-warm leading-none mb-2">{value}</p>
-            <p className="text-sm text-ink/80 leading-snug">{label}</p>
-        </div>
-    );
-};
+const MetricSticker = ({ value, label, compact = false }) => (
+    <Tilt3D max={6} className={`group overflow-hidden bg-bg-elevated border border-border rounded-2xl ${compact ? "px-4 py-4" : "px-5 py-6 md:px-6 md:py-7"}`}>
+        <span className="absolute left-0 top-0 bottom-0 w-1 bg-garnet" aria-hidden="true" />
+        <p className={`font-display font-bold text-ink leading-none ${compact ? "text-3xl md:text-4xl mb-2" : "text-4xl md:text-5xl mb-3"}`}>
+            <AnimatedValue value={value} />
+        </p>
+        <p className={`text-text-secondary leading-snug ${compact ? "text-xs" : "text-sm"}`}>{label}</p>
+    </Tilt3D>
+);
 
 export default MetricSticker;

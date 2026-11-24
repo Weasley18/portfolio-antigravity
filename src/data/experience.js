@@ -1,46 +1,34 @@
 export const experience = [
     {
-        role: "SDE Intern",
+        role: "Software Engineering Intern",
         company: "Firedesk (Leistung Technologies)",
         location: "On-Campus",
-        duration: "September 2025 - June 2026",
+        duration: "Sep 2025 – Jun 2026",
         description: [
-            "Engineered 10+ backend REST APIs in Node.js and Express.js, implementing JWT-based authentication and Role-Based Access Control (RBAC) across multiple user roles to secure request handling in production.",
-
-            "Built responsive React interfaces for 5+ application modules, standardizing a reusable component library that cut new-feature build time by 50% and unified UI/UX across the platform.",
-
-            "Architected and optimized PostgreSQL relational schemas for 10+ modules, adding indexing strategies and ORM-based migrations that reduced average query latency by 40% and enforced data integrity."
-        ]
-    },
-    {
-        role: "Student Researcher",
-        company: "Undergraduate Research Forum, RNSIT",
-        location: "On-Campus",
-        duration: "October 2025 - January 2026",
-        description: [
-            "Collected and preprocessed EEG/biometric data using NeuroSky, MNE-Python, and SciPy, reducing signal noise by ~30%.",
-            "Optimized Random Forest/SVM pipelines, achieving 80–85% migraine classification accuracy.",
-            "Building a mobile alert system for early migraine intervention, planning field trials with NGOs."
-        ]
-    },
-    {
-        role: "Web Development Freelancing",
-        company: "Self (evolvexcse.in, enngee.in)",
-        location: "Remote",
-        duration: "Part-time",
-        description: [
-            "Designed and shipped 2 responsive client websites end-to-end using HTML, CSS, JavaScript, and Git-based version control.",
-            "Acted as sole developer and point of contact, coordinating directly with stakeholders to deliver on time and maintaining post-launch support for live production sites."
+            "Engineered 10+ scalable RESTful APIs in Node.js and Express.js with JWT authentication and RBAC authorization across roles.",
+            "Built React interfaces for 5+ modules in Agile/Scrum sprints, driving cross-functional collaboration through stakeholder demos.",
+            "Standardized a reusable component library via code reviews, cutting feature build time by 50% and unifying the platform UI/UX.",
+            "Owned PostgreSQL schema design for 10+ modules; query optimization via indexing and ORM migrations cut latency by 40%."
         ]
     },
     {
         role: "Summer Research Intern",
         company: "Indian Institute of Technology Roorkee",
         location: "Remote",
-        duration: "May 2024 - June 2024",
+        duration: "May 2024 – Jun 2024",
         description: [
-            "Researched and implemented Python scripts of graph-theory to segment urban maps into 120+ distinct neighborhood clusters.",
-            "Achieved 25–30% higher clustering accuracy using a graph-based method over K-means and DBSCAN for neighborhood delineation."
+            "Researched and implemented Python graph algorithms to segment real-world urban maps into 120+ distinct neighborhood clusters.",
+            "Applied graph-based clustering over K-means and DBSCAN baselines, achieving 25–30% higher neighborhood delineation accuracy."
+        ]
+    },
+    {
+        role: "Web Development Freelancing",
+        company: "Self — evolvexcse.in, enngee.in",
+        location: "Remote",
+        duration: "Freelance",
+        description: [
+            "Designed, built and shipped 2 responsive client websites end-to-end with HTML, CSS and JavaScript, using Git for version control.",
+            "Took full ownership as sole developer and client contact, delivering on time and maintaining post-launch support for both live sites."
         ]
     }
 ];

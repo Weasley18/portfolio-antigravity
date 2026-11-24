@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <circle cx="32" cy="32" r="32" fill="#D97B3F"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="30" fill="#F6F1E7">HR</text>
+  <defs><clipPath id="r"><rect width="64" height="64" rx="14"/></clipPath></defs>
+  <g clip-path="url(#r)">
+    <rect width="64" height="64" fill="#004D98"/>
+    <rect x="11" width="11" height="64" fill="#A50044"/>
+    <rect x="33" width="11" height="64" fill="#A50044"/>
+    <rect x="55" width="11" height="64" fill="#A50044"/>
+  </g>
+  <text x="32" y="44" text-anchor="middle" font-family="'Arial Narrow', Arial, sans-serif" font-weight="800" font-size="30" fill="#FFFFFF" stroke="#060A17" stroke-width="1.2" paint-order="stroke">10</text>
 </svg>
