@@ -127,6 +127,9 @@ const Home = () => {
                     <PillLink to="/experience" variant="solid">
                         Fly through my career in 3D
                     </PillLink>
+                    <PillLink to="/achievements" variant="outline">
+                        Open the trophy cabinet
+                    </PillLink>
                     <PillLink to="/skills" variant="outline">
                         Spin the skill sphere
                     </PillLink>

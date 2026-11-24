@@ -13,11 +13,21 @@ const Navbar = () => {
     const links = [
         { path: '/', label: 'Home' },
         { path: '/work', label: 'Work' },
-        { path: '/experience', label: 'Experience' },
+        { path: '/experience', label: 'Career', also: ['/achievements', '/extracurricular'] },
         { path: '/skills', label: 'Skills' },
         { path: '/about', label: 'About' },
         { path: '/contact', label: 'Contact' },
     ];
+    // The phone menu has room to list the three career pages separately
+    const mobileLinks = links.flatMap((l) =>
+        l.also
+            ? [
+                  { path: '/experience', label: 'Experience' },
+                  { path: '/achievements', label: 'Achievements' },
+                  { path: '/extracurricular', label: 'Extracurricular' },
+              ]
+            : [l]
+    );
 
     // Close mobile menu when the route changes (React render-time state adjust)
     if (location.pathname !== menuPathname) {
@@ -41,7 +51,8 @@ const Navbar = () => {
         };
     }, [menuOpen]);
 
-    const isActive = (path) => (path === '/' ? location.pathname === '/' : location.pathname.startsWith(path));
+    const isActive = (path, also = []) =>
+        path === '/' ? location.pathname === '/' : [path, ...also].some((p) => location.pathname.startsWith(p));
 
     return (
         <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-40">
@@ -61,7 +72,7 @@ const Navbar = () => {
                             <li key={link.path}>
                                 <Link to={link.path} className="relative font-display text-lg font-semibold uppercase tracking-wider hover:text-accent-warm transition-colors">
                                     {link.label}
-                                    {isActive(link.path) && (
+                                    {isActive(link.path, link.also) && (
                                         <motion.div
                                             layoutId="underline"
                                             className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-accent-warm rounded-full"
@@ -95,7 +106,7 @@ const Navbar = () => {
                         className="lg:hidden mt-2 p-4 bg-bg-primary/95 backdrop-blur-md border border-border rounded-2xl shadow-paper"
                     >
                         <ul className="flex flex-col gap-1">
-                            {links.map((link) => (
+                            {mobileLinks.map((link) => (
                                 <li key={link.path}>
                                     <Link
                                         to={link.path}

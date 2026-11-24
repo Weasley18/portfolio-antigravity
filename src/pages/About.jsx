@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Trophy, Mic, BadgeCheck, ArrowRight } from 'lucide-react';
-import { education, achievements, personalInfo } from '../data';
+import { ArrowRight } from 'lucide-react';
+import { education, personalInfo } from '../data';
 import { allSkills } from '../lib/skillUsage';
 import Tilt3D from '../components/ui/Tilt3D';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
@@ -9,7 +9,6 @@ import { revealOnView } from '../lib/motion';
 import SectionHeading from '../components/ui/SectionHeading';
 import ResumeButton from '../components/ui/ResumeButton';
 
-const GROUP_ICONS = [Trophy, Mic, BadgeCheck];
 const SKILL_COUNT = allSkills.length;
 
 const About = () => {
@@ -54,11 +53,13 @@ const About = () => {
                 </div>
             </motion.div>
 
-            {/* Two dedicated pages, each with its own 3D scene */}
+            {/* Dedicated pages, each with its own 3D scene */}
             <section className="mb-20 md:mb-28 grid md:grid-cols-2 gap-5">
                 {[
-                    { to: '/experience', kicker: 'Career mode', title: 'Experience', body: 'Fly through every milestone, from IIT Roorkee to Firedesk to HireLens, in a scroll-driven 3D path.', tone: 'bg-garnet' },
-                    { to: '/skills', kicker: 'The toolkit', title: 'Skills', body: `A 3D sphere of ${SKILL_COUNT} skills. Spin it, click one, and see exactly which project or role used it.`, tone: 'bg-blau' },
+                    { to: '/experience', kicker: 'Career mode', title: 'Experience', body: 'Fly through every role, from IIT Roorkee to Firedesk, in a scroll-driven 3D path.', tone: 'bg-garnet' },
+                    { to: '/achievements', kicker: 'Trophy cabinet', title: 'Achievements', body: 'Two first places, contest ratings and 10+ hackathons on a 3D turntable, plus certifications.', tone: 'bg-gold' },
+                    { to: '/extracurricular', kicker: 'Off the pitch', title: 'Extra­curricular', body: 'The Maverick 2025 pitch, workshops for 200+ students, and MUNSoc organising.', tone: 'bg-blau' },
+                    { to: '/skills', kicker: 'The toolkit', title: 'Skills', body: `A 3D sphere of ${SKILL_COUNT} skills. Spin it, click one, and see exactly which project or role used it.`, tone: 'bg-garnet' },
                 ].map((c) => (
                     <Link key={c.to} to={c.to} className="block">
                         <Tilt3D max={7} className="group overflow-hidden rounded-3xl border border-border bg-[#060B19] p-7 md:p-9 text-[#EEF2FB] min-h-[15rem] flex flex-col justify-end">
@@ -95,33 +96,6 @@ const About = () => {
                             </div>
                         </motion.div>
                     ))}
-                </div>
-            </section>
-
-            <section className="mb-16 md:mb-20">
-                <SectionHeading index="02" kicker="Achievements & certifications" title="Trophies" />
-                <div className="grid md:grid-cols-3 gap-5">
-                    {achievements.map(({ group, items }, index) => {
-                        const Icon = GROUP_ICONS[index % GROUP_ICONS.length];
-                        return (
-                            <motion.div key={group} {...revealOnView(prefersReducedMotion, { delay: index * 0.05 })}>
-                                <Tilt3D max={5} className="group p-6 rounded-2xl border border-border bg-bg-elevated">
-                                <div className="flex items-center gap-3 mb-5">
-                                    <Icon size={18} className="text-gold shrink-0" />
-                                    <h3 className="font-display text-xl font-bold uppercase tracking-tight">{group}</h3>
-                                </div>
-                                <ul className="space-y-3">
-                                    {items.map((item) => (
-                                        <li key={item} className="flex items-start gap-3 text-sm text-text-secondary leading-relaxed">
-                                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-warm shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                                </Tilt3D>
-                            </motion.div>
-                        );
-                    })}
                 </div>
             </section>
 

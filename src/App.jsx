@@ -8,6 +8,8 @@ import CaseStudy from './pages/CaseStudy';
 import Contact from './pages/Contact';
 import Experience from './pages/Experience';
 import Skills from './pages/Skills';
+import Achievements from './pages/Achievements';
+import Extracurricular from './pages/Extracurricular';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="work" element={<Work />} />
           <Route path="work/:slug" element={<CaseStudy />} />
           <Route path="experience" element={<Experience />} />
+          <Route path="achievements" element={<Achievements />} />
+          <Route path="extracurricular" element={<Extracurricular />} />
           <Route path="skills" element={<Skills />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />

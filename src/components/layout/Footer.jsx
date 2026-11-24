@@ -22,6 +22,8 @@ const Footer = () => {
                 <ul className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 font-medium uppercase tracking-wider text-xs">
                     <li><Link to="/work" className="hover:text-accent-warm transition-colors">Work</Link></li>
                     <li><Link to="/experience" className="hover:text-accent-warm transition-colors">Experience</Link></li>
+                    <li><Link to="/achievements" className="hover:text-accent-warm transition-colors">Achievements</Link></li>
+                    <li><Link to="/extracurricular" className="hover:text-accent-warm transition-colors">Extracurricular</Link></li>
                     <li><Link to="/skills" className="hover:text-accent-warm transition-colors">Skills</Link></li>
                     <li><Link to="/about" className="hover:text-accent-warm transition-colors">About</Link></li>
                     <li><Link to="/contact" className="hover:text-accent-warm transition-colors">Contact</Link></li>
