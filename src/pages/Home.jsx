@@ -52,7 +52,7 @@ const Home = () => {
                 </motion.div>
 
                 <p className="absolute right-4 bottom-3 md:right-6 md:bottom-5 z-10 hidden sm:block font-mono text-[10px] uppercase tracking-widest text-white/40">
-                    Core online · click to pulse · built in code with three.js
+                    
                 </p>
             </section>
 
