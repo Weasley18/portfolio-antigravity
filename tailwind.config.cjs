@@ -8,10 +8,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Work Sans', 'sans-serif'],
-                display: ['Fraunces', 'serif'],
-                handwritten: ['Caveat', 'cursive'],
-                mono: ['JetBrains Mono', 'monospace'],
+                sans: ['Barlow', 'system-ui', 'sans-serif'],
+                display: ['"Barlow Condensed"', 'Barlow', 'sans-serif'],
+                mono: ['"JetBrains Mono"', 'monospace'],
             },
             colors: {
                 bg: {
@@ -35,13 +34,15 @@ module.exports = {
                     coolSoft: 'var(--accent-cool-soft)',
                 },
                 sage: 'var(--sage)',
+                gold: 'var(--gold)',
+                garnet: 'var(--fill-garnet)',
+                blau: 'var(--fill-blue)',
                 border: 'var(--border)',
             },
             boxShadow: {
                 paper: '0 1px 2px rgba(28,26,22,.04), 0 8px 24px var(--shadow-color)',
-                sticker: '3px 3px 0 var(--sticker-shadow)',
             },
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/container-queries')],
 }

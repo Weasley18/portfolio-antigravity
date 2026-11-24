@@ -36,7 +36,7 @@ const ArchitectureDiagram = ({ rows = [] }) => (
                     ))}
                 </div>
                 {row.fanLabel && (
-                    <p className="mt-2 font-handwritten text-lg text-accent-warm/80">{row.fanLabel}</p>
+                    <p className="mt-2 font-mono text-[11px] uppercase tracking-widest text-gold">{row.fanLabel}</p>
                 )}
             </div>
         ))}

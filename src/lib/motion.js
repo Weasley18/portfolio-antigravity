@@ -26,8 +26,8 @@ export const revealOnView = (prefersReducedMotion, extra = {}) =>
     prefersReducedMotion
         ? {}
         : {
-              initial: { opacity: 0, y: 24 },
-              whileInView: { opacity: 1, y: 0 },
+              initial: { opacity: 0, y: 28, rotateX: 10, transformPerspective: 1000 },
+              whileInView: { opacity: 1, y: 0, rotateX: 0, transformPerspective: 1000 },
               viewport: { once: true, margin: "-80px" },
-              transition: { duration: 0.5, ease: "easeOut", ...extra },
+              transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], ...extra },
           };

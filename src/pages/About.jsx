@@ -1,92 +1,99 @@
 import { motion } from 'framer-motion';
-import { Award } from 'lucide-react';
-import { education, experience, skills, certifications } from '../data';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { education, personalInfo } from '../data';
+import { allSkills } from '../lib/skillUsage';
+import Tilt3D from '../components/ui/Tilt3D';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 import { revealOnView } from '../lib/motion';
 import SectionHeading from '../components/ui/SectionHeading';
-import AnnotationText from '../components/ui/AnnotationText';
-import StickerTag from '../components/ui/StickerTag';
-import Timeline from '../components/ui/Timeline';
 import ResumeButton from '../components/ui/ResumeButton';
 
-const skillTones = ['warm', 'cool'];
+const SKILL_COUNT = allSkills.length;
 
 const About = () => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     return (
         <div className="py-8 md:py-12">
-            <motion.div {...revealOnView(prefersReducedMotion)} className="mb-16 md:mb-24 max-w-3xl">
-                <p className="font-mono text-xs uppercase tracking-widest text-accent-warm mb-4">Notebook — Page 01</p>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-semibold tracking-tight mb-6">About Me</h1>
-                <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-4">
-                    I'm a pre-final-year Computer Science (Cyber Security) student, mostly interested in backend systems and
-                    AI tools that hold up outside of a demo. During my internship at Firedesk, I worked on backend services
-                    with JWT auth and role-based access control, helped optimize PostgreSQL schemas that cut query latency
-                    by around 40%, and built reusable React components that made new features a bit quicker to ship.
-                </p>
-                <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-6">
-                    Outside of that, I like experimenting — RAG pipelines, ML models for financial risk scoring, multilingual
-                    mobile apps at hackathons. <AnnotationText className="text-lg md:text-xl">I'm still learning, but I try to build things that are actually useful.</AnnotationText>
-                </p>
+            <motion.div
+                {...revealOnView(prefersReducedMotion)}
+                className="mb-20 md:mb-28 grid md:grid-cols-[1fr_auto] gap-10 md:gap-16 items-start"
+            >
+                <div className="max-w-3xl">
+                    <p className="font-mono text-xs uppercase tracking-widest text-accent-warm mb-4">Player profile</p>
+                    <h1 className="text-6xl sm:text-7xl md:text-8xl font-display font-extrabold uppercase tracking-tight leading-none mb-8">
+                        About me
+                    </h1>
+                    <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-4">
+                        I&apos;m a final-year Computer Science (Cyber Security) student at RNSIT, Bengaluru, and I mostly
+                        build backend systems and AI tools. At Firedesk I shipped 10+ REST APIs with JWT and role-based
+                        access, owned PostgreSQL schemas for 10+ modules (cutting query latency by 40%), and built the
+                        shared component library that halved feature build time.
+                    </p>
+                    <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed">
+                        On my own I&apos;ve built an LLM résumé assessor with a tested eval harness, a multiplayer AI
+                        courtroom, a DevSecOps gate that fails closed, and, out of pure Kolkata para nostalgia, a
+                        street football game in three.js.
+                    </p>
+                </div>
+                <div className="relative w-48 md:w-64 mx-auto md:mx-0">
+                    <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-border bg-bg-secondary">
+                        <img
+                            src={personalInfo.image}
+                            alt={personalInfo.name}
+                            width="675"
+                            height="900"
+                            loading="eager"
+                            decoding="async"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div className="stripe-rule mt-3" aria-hidden="true" />
+                </div>
             </motion.div>
 
-            <section className="mb-20 md:mb-28">
-                <SectionHeading index="02" title="Journey" />
-                <Timeline items={experience} />
+            {/* Dedicated pages, each with its own 3D scene */}
+            <section className="mb-20 md:mb-28 grid md:grid-cols-2 gap-5">
+                {[
+                    { to: '/experience', kicker: 'Career mode', title: 'Experience', body: 'Fly through every role, from IIT Roorkee to Firedesk, in a scroll-driven 3D path.', tone: 'bg-garnet' },
+                    { to: '/achievements', kicker: 'Trophy cabinet', title: 'Achievements', body: 'Two first places, contest ratings and 10+ hackathons on a 3D turntable, plus certifications.', tone: 'bg-gold' },
+                    { to: '/extracurricular', kicker: 'Off the pitch', title: 'Extra­curricular', body: 'The Maverick 2025 pitch, workshops for 200+ students, and MUNSoc organising.', tone: 'bg-blau' },
+                    { to: '/skills', kicker: 'The toolkit', title: 'Skills', body: `A 3D sphere of ${SKILL_COUNT} skills. Spin it, click one, and see exactly which project or role used it.`, tone: 'bg-garnet' },
+                ].map((c) => (
+                    <Link key={c.to} to={c.to} className="block">
+                        <Tilt3D max={7} className="group overflow-hidden rounded-3xl border border-border bg-[#060B19] p-7 md:p-9 text-[#EEF2FB] min-h-[15rem] flex flex-col justify-end">
+                            <span className={`absolute -right-16 -top-16 w-56 h-56 rounded-full blur-3xl opacity-50 ${c.tone}`} aria-hidden="true" />
+                            <p className="relative font-mono text-[11px] uppercase tracking-widest text-[#EDBB00] mb-2" style={{ transform: 'translateZ(30px)' }}>{c.kicker}</p>
+                            <h2 className="relative font-display text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-none mb-3" style={{ transform: 'translateZ(40px)' }}>
+                                {c.title}
+                            </h2>
+                            <p className="relative text-white/70 max-w-sm mb-4">{c.body}</p>
+                            <span className="relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#EDBB00]">
+                                Enter <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                            </span>
+                        </Tilt3D>
+                    </Link>
+                ))}
             </section>
 
             <section className="mb-20 md:mb-28">
-                <SectionHeading index="03" title="Education" />
-                <div className="grid gap-8">
+                <SectionHeading index="01" kicker="Education" title="Academy" />
+                <div className="grid gap-6">
                     {education.map((edu, index) => (
                         <motion.div
-                            key={index}
+                            key={edu.institution}
                             {...revealOnView(prefersReducedMotion, { delay: index * 0.06 })}
                             className="flex flex-col md:flex-row justify-between md:items-start gap-2 border-b border-border pb-6"
                         >
                             <div>
-                                <h4 className="text-xl md:text-2xl font-display font-semibold mb-1">{edu.institution}</h4>
+                                <h3 className="text-2xl md:text-3xl font-display font-bold uppercase tracking-tight mb-1">{edu.institution}</h3>
                                 <p className="text-text-secondary">{edu.degree}</p>
                             </div>
                             <div className="text-left md:text-right shrink-0">
                                 <p className="font-mono text-sm font-medium">{edu.year}</p>
                                 <p className="text-sm text-text-secondary">{edu.location}</p>
                             </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            <section className="mb-20 md:mb-28">
-                <SectionHeading index="04" title="Skills" />
-                <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
-                    {Object.entries(skills).map(([category, items], catIndex) => (
-                        <motion.div key={category} {...revealOnView(prefersReducedMotion, { delay: catIndex * 0.05 })}>
-                            <h4 className="text-sm uppercase tracking-wider text-text-secondary mb-4">{category}</h4>
-                            <div className="flex flex-wrap gap-2.5">
-                                {items.map((skill) => (
-                                    <StickerTag key={skill} tone={skillTones[catIndex % 2]}>
-                                        {skill}
-                                    </StickerTag>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            <section className="mb-16 md:mb-20">
-                <SectionHeading index="05" title="Certifications & Achievements" />
-                <div className="grid sm:grid-cols-2 gap-4">
-                    {certifications.map((cert, index) => (
-                        <motion.div
-                            key={index}
-                            {...revealOnView(prefersReducedMotion, { delay: index * 0.04 })}
-                            className="flex items-start gap-3 p-4 rounded-lg border border-border bg-bg-elevated shadow-paper"
-                        >
-                            <Award size={18} className="text-accent-warm shrink-0 mt-0.5" />
-                            <p className="text-sm text-text-secondary leading-relaxed">{cert}</p>
                         </motion.div>
                     ))}
                 </div>

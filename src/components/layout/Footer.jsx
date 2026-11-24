@@ -11,12 +11,20 @@ const Footer = () => {
     };
 
     return (
-        <footer className="relative z-10 border-t border-border mt-20">
+        <footer className="relative z-10 mt-20">
+            <div className="stripe-rule !rounded-none !h-[3px]" aria-hidden="true" />
             <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 lg:px-24 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-text-secondary">
-                <p>Made in Bengaluru · © {new Date().getFullYear()} Harsh Ringsia</p>
+                <p className="flex items-center gap-3">
+                    <span className="font-display text-xl font-bold text-gold leading-none" title="Nº 10">10</span>
+                    <span>Made in Bengaluru · © {new Date().getFullYear()} Harsh Ringsia</span>
+                </p>
 
-                <ul className="flex items-center gap-6 font-medium uppercase tracking-wider text-xs">
+                <ul className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 font-medium uppercase tracking-wider text-xs">
                     <li><Link to="/work" className="hover:text-accent-warm transition-colors">Work</Link></li>
+                    <li><Link to="/experience" className="hover:text-accent-warm transition-colors">Experience</Link></li>
+                    <li><Link to="/achievements" className="hover:text-accent-warm transition-colors">Achievements</Link></li>
+                    <li><Link to="/extracurricular" className="hover:text-accent-warm transition-colors">Extracurricular</Link></li>
+                    <li><Link to="/skills" className="hover:text-accent-warm transition-colors">Skills</Link></li>
                     <li><Link to="/about" className="hover:text-accent-warm transition-colors">About</Link></li>
                     <li><Link to="/contact" className="hover:text-accent-warm transition-colors">Contact</Link></li>
                 </ul>
@@ -34,7 +42,7 @@ const Footer = () => {
                     <button
                         type="button"
                         onClick={scrollToTop}
-                        className="font-handwritten text-accent-warm text-base flex items-center gap-1 hover:underline"
+                        className="font-mono text-xs uppercase tracking-widest text-accent-warm flex items-center gap-1 hover:underline"
                     >
                         back to top <ArrowUp size={14} />
                     </button>
